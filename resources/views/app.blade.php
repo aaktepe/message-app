@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>Contact Form</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,9 +19,19 @@
         </style>
     </head>
     <body>
-      <div class="flex-center position-ref full-height" id="app">
-            <example-component></example-component>
-      </div>
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/login') }}">
+                    <h2>{{ config('app.name', 'Laravel') }}</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>    
+        </nav>
+        <div class="flex-center position-ref full-height mt-4 ml-4 mr-4" id="app">
+            <message-component></message-component>
+        </div>
       <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

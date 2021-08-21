@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
+use App\Notifications\SendNotificationMail;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Yajra\Datatables\Facades\Datatables;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Notification;
 
 class MessageController extends Controller
 {
@@ -14,7 +21,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return Message::all();
+        $messages = Message::select('id','name','email','message');
+        return datatables($messages)->make(true);
     }
 
     /**
@@ -25,13 +33,22 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $fields = $request->validate([
             'name' => 'required',
             'email' => 'required',
             'message' => 'required'
         ]);
+        $message =  Message::create([
+            'name' => $fields['name'],
+            'email' => $fields['email'],
+            'message' => $fields['message']
+        ]);
+        $admin = User::where('id', 1)->first();
 
-        return Message::create($request->all());
+        Notification::send($admin, new SendNotificationMail($message));
+
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**
@@ -42,7 +59,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::find($id);
+        return $message;
     }
 
     /**

@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 //Public Routes
 Route::post('/messages', [MessageController::class, 'store']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //Private Routes
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/messages', [MessageController::class, 'index']);
+    Route::get('/messages/{id}', [MessageController::class, 'show']);
     Route::get('/messages/search/{message}', [MessageController::class, 'search']);
     Route::delete('/messages/{id}', [MessageController::class, 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);

@@ -8,6 +8,23 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+$.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+let axios = require('axios');
+
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
+
+const opts = {}
+
+export default new Vuetify(opts)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +37,9 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('message-component', require('./components/MessageComponent.vue').default);
+Vue.component('datatable-component', require('./components/DataTableComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
