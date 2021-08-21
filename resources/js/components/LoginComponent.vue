@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="row mt-4">
-        <div class="col-6 offset-3">
+        <div class="col-6">
           <form action="#" @submit.prevent="handleLogin">
             <h2>Login for messages</h2>
             <div class="form-row">

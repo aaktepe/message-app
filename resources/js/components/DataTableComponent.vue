@@ -8,6 +8,7 @@
             <th>Email</th>
             <th>Message</th>
             <th>Delete</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>
@@ -68,7 +69,13 @@ export default {
               {
                 "targets": -1,
                 "data": null,
-                "defaultContent": '<button class="btn btn-danger" id="deleteButton">Delete</button>',
+                "defaultContent": '<button class="btn btn-danger">Delete</button>',
+                "searchable": false
+              },
+              {
+                "targets": -1,
+                "data": null,
+                "defaultContent": '<a class="btn btn-primary" href="#" role="button">Link</a>',
                 "searchable": false
               }
           ]
@@ -91,6 +98,12 @@ export default {
           alert(error);
       })
     } );
+
+      $('#datatable tbody').on( 'click', 'a', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        console.log(data);
+        window.location.replace('messages/'+ data.id);
+    });
     });
 
   },

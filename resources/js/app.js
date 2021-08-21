@@ -36,10 +36,10 @@ export default new Vuetify(opts)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
 Vue.component('datatable-component', require('./components/DataTableComponent.vue').default);
+Vue.component('single-component', require('./components/SingleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

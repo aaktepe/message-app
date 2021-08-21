@@ -23,6 +23,10 @@ Route::get('/login', function () {
 
 Route::get('/messages', function () {
     return view('messages');
+});
+
+Route::get('/messages/{id}', function () {
+    return view('message');
 }); 
 
 Route::get('test-email', 'JobController@enqueue');
